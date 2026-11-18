@@ -23,7 +23,7 @@ A REST API and AI-powered automation workflow for patient follow-up management, 
 
 - **Runtime**: Node.js 18+ with TypeScript
 - **Framework**: Express.js
-- **Database**: SQLite (better-sqlite3)
+- **Database**: JSON file store (`data/patients.json`)
 - **Validation**: Zod
 - **AI**: OpenAI API (with mock fallback)
 - **Testing**: Jest + Supertest
@@ -244,7 +244,7 @@ patient-followup-system/
 ├── src/
 │   ├── index.ts                 # App entry point
 │   ├── database/
-│   │   └── schema.ts            # SQLite schema & initialization
+│   │   └── jsonStore.ts         # JSON file store (load/save patients)
 │   ├── models/
 │   │   └── patient.ts           # Zod schemas & TypeScript types
 │   ├── services/
@@ -257,7 +257,7 @@ patient-followup-system/
 │   └── middleware/
 │       └── errorHandler.ts      # Global error handling
 ├── data/
-│   └── patients.db              # SQLite database (auto-created)
+│   └── patients.json            # Patient records (auto-created)
 ├── .env.example                 # Environment template
 ├── package.json
 ├── tsconfig.json
@@ -270,13 +270,13 @@ patient-followup-system/
 - **Helmet** - Security headers
 - **CORS** - Configured for development
 - **Input Validation** - All inputs validated with Zod
-- **SQL Injection Prevention** - Parameterized queries via better-sqlite3
+- **Input Validation** - All inputs validated with Zod; no raw queries (JSON file store)
 - **Health Data** - No PHI logged; audit trail via `created_at`/`updated_at`
 
 ## 📝 Assessment Notes
 
 ### What I Built Personally
-- Complete backend architecture (Express + TypeScript + SQLite)
+- Complete backend architecture (Express + TypeScript + JSON file store)
 - Database schema with indexes and triggers
 - All REST API endpoints with validation
 - AI integration with OpenAI (with mock fallback)
@@ -297,14 +297,9 @@ patient-followup-system/
 
 ## 📺 Demo Video
 
-*[To be recorded - 3 minutes max showing:*
-1. *Server startup*
-2. *Creating patients via API*
-3. *Listing patients with filters*
-4. *Getting due patients*
-5. *Generating AI WhatsApp drafts*
-6. *Marking follow-up complete*
-7. *Running tests]*
+[Watch the demo (4 min 30 sec, trimmed)](https://drive.google.com/file/d/1-pdztKAIKA7IAKffg4TsUryTjsa_azIa/view?usp=drivesdk)
+
+Shows: server startup, creating patients via API, listing patients with filters, getting due patients, generating AI WhatsApp drafts, marking follow-up complete, and running tests.
 
 ## 📄 License
 
